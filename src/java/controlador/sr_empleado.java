@@ -37,10 +37,10 @@ public class sr_empleado extends HttpServlet {
             //boton agregar    
                 if ("agregar".equals(request.getParameter("btn_agregar"))){
                 if (empleado.agregar()>0){
-                response.sendRedirect("menu.jsp");
+                response.sendRedirect("empleados.jsp");
                 } else {
                     out.println("<h1>No se ingreso</h1>");
-                    out.println("<a href='index.jsp'>Regresar</a>");
+                    out.println("<a href='empleado.jsp'>Regresar</a>");
                 }
                 }
             

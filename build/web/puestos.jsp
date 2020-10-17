@@ -37,13 +37,14 @@
                 <input class="form-control" type="text" name="txt_idp" id="txt_idp" value="0" readonly>
                 <label for="lbl_puesto" ><b>Puesto</b></label>
                 <input class="form-control" type="text" name="txt_puesto" id="txt_puesto" required>
+                <br>
+                <button name="btn_agregar" id="btn_agregar" value="agregar" class="btn btn-outline-info">Agregar</button>
+                <button name="btn_modificar" id="btn_modificar" value="modificar" class="btn btn-outline-info">Modificar</button>
+                <button name="btn_eliminar" id="btn_eliminar" value="eliminar" class="btn btn-outline-danger" onclick="javascritp:if(!confirm('¿Desea Eliminar'))return false">Eliminar</button>
             </form>
             </div>
             </div>
             <div class="modal-footer">
-                <button name="btn_agregar" id="btn_agregar" value="agregar" class="btn btn-outline-info">Agregar</button>
-                <button name="btn_modificar" id="btn_modificar" value="modificar" class="btn btn-outline-info">Modificar</button>
-                <button name="btn_eliminar" id="btn_eliminar" value="eliminar" class="btn btn-outline-danger" onclick="javascritp:if(!confirm('¿Desea Eliminar'))return false">Eliminar</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
             </div>
             </div>

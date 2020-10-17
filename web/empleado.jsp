@@ -32,7 +32,7 @@
         </div>
         <div class="modal-body">
         <div class="container">
-        <form class="form-group" action="" method="post">
+        <form class="form-group" action="sr_empleado" method="post">
                 <label for="lbl_id" ><b>ID</b></label>
                 <input class="form-control" type="text" name="txt_id" id="txt_id" value="0" readonly>
                 <label for="lbl_nombres" ><b>Nombres</b></label>
@@ -47,8 +47,8 @@
                 <input class="form-control" type="text" name="txt_dpi" id="txt_dpi" required>
                 <label for="lbl_genero"><b>Genero</b></label>
                 <select class="form-control" name="drop_genero" id="drop_genero" required>
-                    <option >0</option>
-                    <option >1</option>  
+                    <option value="0">Masculino</option>
+                    <option value="1">Femenino</option>  
                 </select>
                 <label for="lbl_fecha_nacimiento"><b>Fecha Nacimiento</b></label>
                 <input class="form-control" type="date" name="txt_fecha_nacimiento" id="txt_fecha_nacimiento" required>
@@ -65,10 +65,11 @@
                 <label for="lbl_finicio_labores"><b>Fecha inicio de labores</b></label>
                 <input class="form-control" type="date" name="txt_finicio_labores" id="txt_finicio_labores" required>
                 <br>
-                <div class="modal-footer">
                 <button name="btn_agregar" id="btn_agregar" value="agregar" class="btn btn-outline-success">Agregar</button>
                 <button type="button" class="btn btn-primary" id="btn_modificar">Modificar</button>
                 <button type="button" class="btn btn-primary" id="btn_eliminar">Eliminar</button>
+                <br>
+                <div class="modal-footer">
                 <button type="button" class="btn btn-primary" id="btn_puestos">Puestos</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                 </div>
