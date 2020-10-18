@@ -14,51 +14,23 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Erick
  */
-public class Proveedores {
-    private String proveedor,nit,direccion,telefono;
+public class Marcas {
+    private String marca;
     private int id;
     private Conexion cn;
-    public Proveedores() {}
+    public Marcas() {}
 
-    public Proveedores(String proveedor, String nit, String direccion, String telefono, int id) {
-        this.proveedor = proveedor;
-        this.nit = nit;
-        this.direccion = direccion;
-        this.telefono = telefono;
+    public Marcas(String marca, int id) {
+        this.marca = marca;
         this.id = id;
     }
-    
 
-    public String getProveedor() {
-        return proveedor;
+    public String getMarca() {
+        return marca;
     }
 
-    public void setProveedor(String proveedor) {
-        this.proveedor = proveedor;
-    }
-
-    public String getNit() {
-        return nit;
-    }
-
-    public void setNit(String nit) {
-        this.nit = nit;
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public void setMarca(String marca) {
+        this.marca = marca;
     }
 
     public int getId() {
@@ -69,22 +41,19 @@ public class Proveedores {
         this.id = id;
     }
     
-public DefaultTableModel leer(){
+    public DefaultTableModel leer(){
         DefaultTableModel tabla = new DefaultTableModel();
         try {
             cn = new Conexion();
             cn.abrir_conexion();
-                String query="SELECT idProveedor as id,nit,proveedor,direccion,telefono FROM proveedores;";
+                String query="SELECT idMarca as id, marca from marcas;";
                 ResultSet consulta = cn.conexionBD.createStatement().executeQuery(query);
-                String encabezado[] = {"id","nit","proveedor","direccion","telefono"};
+                String encabezado[] = {"ID","Marcas"};
                 tabla.setColumnIdentifiers(encabezado);
-                String datos[] = new String[5];
+                String datos[] = new String[2];
                 while (consulta.next()){
                     datos[0] = consulta.getString("id");
-                    datos[1] = consulta.getString("nit");
-                    datos[2] = consulta.getString("proveedor");
-                    datos[3] = consulta.getString("direccion");
-                    datos[4] = consulta.getString("telefono");
+                    datos[1] = consulta.getString("marca");
                     tabla.addRow(datos);
                 }
             cn.cerrar_conexion();
@@ -95,18 +64,15 @@ public DefaultTableModel leer(){
         return tabla;
     }
     
- public int agregar(){
+    public int agregar(){
         int retorno = 0;
         try {
             cn = new Conexion();
             PreparedStatement parametro;
-            String query="INSERT INTO proveedores (proveedor,nit,direccion,telefono) VALUES (?,?,?,?);";
+            String query="INSERT INTO marcas (marca) VALUES (?);";
             cn.abrir_conexion();
             parametro = (PreparedStatement)cn.conexionBD.prepareStatement(query);
-            parametro.setString(1, this.getProveedor());
-            parametro.setString(2, this.getNit());
-            parametro.setString(3, this.getDireccion());
-            parametro.setString(4, this.getTelefono());          
+            parametro.setString(1, this.getMarca());
             retorno = parametro.executeUpdate();
             cn.cerrar_conexion();
         } catch (SQLException ex){
@@ -121,14 +87,11 @@ public DefaultTableModel leer(){
         try {
             cn = new Conexion();
             PreparedStatement parametro;
-            String query="UPDATE proveedores SET proveedor=?,nit=?,direccion=?,telefono=? WHERE idProveedor=?;";
+            String query="UPDATE marcas SET marca=? WHERE idMarca = ?;";
             cn.abrir_conexion();
             parametro = (PreparedStatement)cn.conexionBD.prepareStatement(query);
-            parametro.setString(1,this.getProveedor());
-            parametro.setString(2,this.getNit());
-            parametro.setString(3,this.getDireccion());
-            parametro.setString(4,this.getTelefono());
-            parametro.setInt(5, this.getId());
+            parametro.setString(1,this.getMarca());
+            parametro.setInt(2, this.getId());
             retorno = parametro.executeUpdate();
             cn.cerrar_conexion();
         } catch (SQLException ex){
@@ -143,7 +106,7 @@ public DefaultTableModel leer(){
         try {
             cn = new Conexion();
             PreparedStatement parametro;
-            String query="delete from proveedores where idProveedor=?;";
+            String query="delete from marcas where idMarca=?;";
             cn.abrir_conexion();
             parametro = (PreparedStatement)cn.conexionBD.prepareStatement(query);
             parametro.setInt(1, this.getId());

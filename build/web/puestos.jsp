@@ -118,7 +118,7 @@
                     $("#txt_puesto").val('');
                 }
                 
-                $('#tbl_puestos').on('click','tr td',function(evt){
+                $('#tbl_puestos').on('click','tr td',function(){
                 var target,idp,puesto;
                 target = $(event.target);
                 idp = target.parent("tr").find("td").eq(0).html();

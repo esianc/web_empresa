@@ -1,48 +1,41 @@
 <%-- 
-    Document   : puestos
-    Created on : 10/10/2020, 08:17:34 PM
+    Document   : marcas
+    Created on : 18/10/2020, 03:12:59 PM
     Author     : Erick
 --%>
 
 <%@page import="javax.swing.table.DefaultTableModel"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="modelo.Proveedores"%>
+<%@page import="modelo.Marcas"%>
 <!DOCTYPE html>
 <html>
-    
     <head>
-        <title>proveedores</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Marcas</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <br>
-        <!-- Modal -->
-        <div class="modal fade" id="modal_proveedores" role="dialog">
+        
+    <!-- Modal -->
+        <div class="modal fade" id="modal_marcas" role="dialog">
         <div class="modal-dialog">
         <!-- Modal content-->
             <div class="modal-content">
             <div class="modal-header">
-            <h4 class="modal-title">Proveedores</h4>
+            <h4 class="modal-title">Marcas</h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
         <!-- Modal body-->
             <div class="modal-body">
             <div class="container">
-            <form class="form-group" action="sr_proveedores" method="post">
-                <label for="lbl_idprov" ><b>ID</b></label>
-                <input class="form-control" type="text" name="txt_idprov" id="txt_idprov" value="0" readonly>
-                <label for="lbl_nit" ><b>NIT</b></label>
-                <input class="form-control" type="text" name="txt_nit" id="txt_nit" required>
-                <label for="lbl_proveedor" ><b>Razon Social</b></label>
-                <input class="form-control" type="text" name="txt_proveedor" id="txt_proveedor" required>
-                <label for="lbl_direccion" ><b>Dirección</b></label>
-                <input class="form-control" type="text" name="txt_direccion" id="txt_direccion" required>
-                <label for="lbl_telefono" ><b>Teléfono</b></label>
-                <input class="form-control" type="text" name="txt_telefono" id="txt_telefono" required>
+            <form class="form-group" action="sr_marcas" method="post">
+                <label for="lbl_idp" ><b>ID</b></label>
+                <input class="form-control" type="text" name="txt_idm" id="txt_idm" value="0" readonly>
+                <label for="lbl_puesto" ><b>Marca</b></label>
+                <input class="form-control" type="text" name="txt_marca" id="txt_marca" required>
                 <br>
                 <button name="btn_agregar" id="btn_agregar" value="agregar" class="btn btn-outline-primary">Agregar</button>
                 <button name="btn_modificar" id="btn_modificar" value="modificar" class="btn btn-outline-success">Modificar</button>
@@ -59,33 +52,28 @@
             <div class="container">
                 <br>
                 <br>
-                <h1>Mantenimiento de Proveedores</h1>
+                <h1>Mantenimiento de Marcas</h1>
                 <br>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_puesto" onclick="limpiar()" id="btn_nuevo">Nuevo</button>
+                <a href="empleado.jsp" class="btn btn-success">Ir a Empleados</a>               
                 <br>
                 <br>
                 <table class="table table-dark table-hover table-responsive">
                     <thead class="thead-responsive thead-dark">
                         <tr>
                         <th>ID</th>
-                        <th>NIT</th>
-                        <th>Nombre</th>
-                        <th>Direccion</th>
-                        <th>Teléfono</th>
+                        <th>Descripcion de marca</th>
                         </tr>
                     </thead>
-                    <tbody id="tbl_puestos">
+                    <tbody id="tbl_marcas">
                         <%
-                            Proveedores prove = new Proveedores();
+                            Marcas marcas = new Marcas();
                             DefaultTableModel tabla = new DefaultTableModel();
-                            tabla = prove.leer();
+                            tabla = marcas.leer();
                             for (int t=0; t<tabla.getRowCount();t++){
                                 out.println("<tr>");
                                 out.println("<td>" + tabla.getValueAt(t, 0) + "</td>");
                                 out.println("<td>" + tabla.getValueAt(t, 1) + "</td>");
-                                out.println("<td>" + tabla.getValueAt(t, 2) + "</td>");
-                                out.println("<td>" + tabla.getValueAt(t, 3) + "</td>");
-                                out.println("<td>" + tabla.getValueAt(t, 4) + "</td>");
                                 out.println("</tr>");
                             }
                         %>
@@ -97,34 +85,24 @@
             /*para que el modal no se cierre al dar clic afuera*/
                 $(document).ready(function(){
                 $("#btn_nuevo").click(function(){
-                $("#modal_proveedores").modal({backdrop: "static"});
+                $("#modal_marcas").modal({backdrop: "static"});
                 });
                 });
                 
                 //*Limpiar todas las casillas*/
                 function limpiar(){
-                    $("#txt_idprov").val(0);
-                    $("#txt_nit").val('');
-                    $("#txt_proveedor").val('');
-                    $("#txt_direccion").val('');
-                    $("#txt_telefono").val('');
-                    
+                    $("#txt_idm").val(0);
+                    $("#txt_marca").val('');
                 }
                 
-                $('#tbl_puestos').on('click','tr td',function(evt){
-                var target,id,nit,proveedor,direccion,telefono;
+                $('#tbl_marcas').on('click','tr td',function(){
+                var target,idp,puesto;
                 target = $(event.target);
-                id = target.parent("tr").find("td").eq(0).html();
-                nit = target.parent("tr").find("td").eq(1).html();
-                proveedor = target.parent("tr").find("td").eq(2).html();
-                direccion = target.parent("tr").find("td").eq(3).html();
-                telefono = target.parent("tr").find("td").eq(4).html();
-                    $("#txt_idprov").val(id);
-                    $("#txt_nit").val(nit);
-                    $("#txt_proveedor").val(proveedor);
-                    $("#txt_direccion").val(direccion);
-                    $("#txt_telefono").val(telefono);
-                    $("#modal_proveedores").modal('show');
+                idp = target.parent("tr").find("td").eq(0).html();
+                puesto = target.parent("tr").find("td").eq(1).html();
+                    $("#txt_idm").val(idp);
+                    $("#txt_marca").val(puesto);
+                    $("#modal_marcas").modal('show');
             });
             </script>
     </body>

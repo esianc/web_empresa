@@ -40,7 +40,7 @@ public class sr_puesto extends HttpServlet {
                 response.sendRedirect("puestos.jsp");
                 } else {
                     out.println("<h1>No se ingreso</h1>");
-                    out.println("<a href='menu.jsp'>Regresar</a>");
+                    out.println("<a href='index.jsp'>Regresar</a>");
                 }
                 }
             

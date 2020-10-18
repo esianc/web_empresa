@@ -11,6 +11,7 @@
 <html>
     
     <head>
+        <title>proveedores</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -42,7 +43,6 @@
                 <input class="form-control" type="text" name="txt_direccion" id="txt_direccion" required>
                 <label for="lbl_telefono" ><b>Teléfono</b></label>
                 <input class="form-control" type="text" name="txt_telefono" id="txt_telefono" required>
-                
                 <br>
                 <button name="btn_agregar" id="btn_agregar" value="agregar" class="btn btn-outline-primary">Agregar</button>
                 <button name="btn_modificar" id="btn_modificar" value="modificar" class="btn btn-outline-success">Modificar</button>
@@ -62,8 +62,6 @@
                 <h1>Mantenimiento de Proveedores</h1>
                 <br>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_puesto" onclick="limpiar()" id="btn_nuevo">Nuevo</button>
-                <a href="empleado.jsp" class="btn btn-success">Ir a Empleados</a>
-                <a href="login.jsp" class="btn btn-outline-danger">Salir</a>
                 <br>
                 <br>
                 <table class="table table-dark table-hover table-responsive">
@@ -126,7 +124,7 @@
                     $("#txt_proveedor").val(proveedor);
                     $("#txt_direccion").val(direccion);
                     $("#txt_telefono").val(telefono);
-                    $("#modal_puesto").modal('show');
+                    $("#modal_proveedores").modal('show');
             });
             </script>
     </body>

@@ -11,14 +11,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.Proveedores;
+import modelo.Marcas;
+
 /**
  *
  * @author Erick
  */
-public class sr_proveedores extends HttpServlet {
+public class sr_marcas extends HttpServlet {
 
-    Proveedores prove;
+    Marcas marca;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -27,27 +28,27 @@ public class sr_proveedores extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet sr_proveedores</title>");            
+            out.println("<title>Servlet sr_marcas</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet sr_proveedores at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet sr_marcas at " + request.getContextPath() + "</h1>");
             
-            prove = new Proveedores(request.getParameter("txt_proveedor"),request.getParameter("txt_nit"),request.getParameter("txt_direccion"),request.getParameter("txt_telefono"),Integer.valueOf(request.getParameter("txt_idprov")));
+            marca = new Marcas(request.getParameter("txt_marca"),Integer.valueOf(request.getParameter("txt_idm")));
             
             //boton agregar    
                 if ("agregar".equals(request.getParameter("btn_agregar"))){
-                if (prove.agregar()>0){
-                response.sendRedirect("proveedores.jsp");
+                if (marca.agregar()>0){
+                response.sendRedirect("marcas.jsp");
                 } else {
                     out.println("<h1>No se ingreso</h1>");
-                    out.println("<a href='menu.jsp'>Regresar</a>");
+                    out.println("<a href='index.jsp'>Regresar</a>");
                 }
                 }
             
             //boton modificar    
                 if ("modificar".equals(request.getParameter("btn_modificar"))){
-                if (prove.modificar()>0){
-                response.sendRedirect("proveedores.jsp");
+                if (marca.modificar()>0){
+                response.sendRedirect("marcas.jsp");
                 } else {
                     out.println("<h1>No se actualizó</h1>");
                     out.println("<a href='index.jsp'>Regresar</a>");
@@ -56,8 +57,8 @@ public class sr_proveedores extends HttpServlet {
                 
             //boton eliminar    
                 if ("eliminar".equals(request.getParameter("btn_eliminar"))){
-                if (prove.eliminar()>0){
-                response.sendRedirect("proveedores.jsp");
+                if (marca.eliminar()>0){
+                response.sendRedirect("marcas.jsp");
                 } else {
                     out.println("<h1>No se eliminó</h1>");
                     out.println("<a href='index.jsp'>Regresar</a>");

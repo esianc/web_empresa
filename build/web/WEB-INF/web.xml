@@ -16,6 +16,10 @@
         <servlet-name>sr_proveedores</servlet-name>
         <servlet-class>controlador.sr_proveedores</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>sr_marcas</servlet-name>
+        <servlet-class>controlador.sr_marcas</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>sr_empleado</servlet-name>
         <url-pattern>/sr_empleado</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>sr_proveedores</servlet-name>
         <url-pattern>/sr_proveedores</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>sr_marcas</servlet-name>
+        <url-pattern>/sr_marcas</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
