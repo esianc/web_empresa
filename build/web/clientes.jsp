@@ -7,8 +7,7 @@
 <%@page import="java.util.HashMap"%>
 <%@page import="javax.swing.table.DefaultTableModel"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="modelo.Empleado"%>
-<%@page import="modelo.Puestos"%>
+<%@page import="modelo.Clientes"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -45,58 +44,43 @@
         </nav>
         <br>
         <!-- Modal -->
-        <div class="modal fade" id="modal_empleado" role="dialog">
+        <div class="modal fade" id="modal_clientes" role="dialog">
         <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
         <div class="modal-header">
-        <h4 class="modal-title">Mantenimiento de empleados</h4>
+        <h4 class="modal-title">Clientes</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
         <div class="container">
-        <form class="form-group" action="sr_empleado" method="post">
+        <form class="form-group" action="sr_clientes" method="post">
                 <label for="lbl_id" ><b>ID</b></label>
                 <input class="form-control" type="text" name="txt_id" id="txt_id" value="0" readonly>
                 <label for="lbl_nombres" ><b>Nombres</b></label>
                 <input class="form-control" type="text" name="txt_nombres" id="txt_nombres" required>
                 <label for="lbl_apellidos" ><b>Apellidos</b></label>
                 <input class="form-control" type="text" name="txt_apellidos" id="txt_apellidos" required>
-                <label for="lbl_direccion" ><b>Direccion</b></label>
-                <input class="form-control" type="text" name="txt_direccion" id="txt_direccion" required>
-                <label for="lbl_telefono" ><b>Telefono</b></label>
-                <input class="form-control" type="text" name="txt_telefono" id="txt_telefono" required>
-                <label for="lbl_dpi" ><b>DPI</b></label>
-                <input class="form-control" type="text" name="txt_dpi" id="txt_dpi" required>
-                <label for="lbl_genero"><b>Genero</b></label>
+                <label for="lbl_nit" ><b>NIT</b></label>
+                <input class="form-control" type="text" name="txt_nit" id="txt_nit" required>
+                <label for="lbl_genero" ><b>Genero</b></label>
                 <select class="form-control" name="drop_genero" id="drop_genero" required>
                     <option value="0">Masculino</option>
                     <option value="1">Femenino</option>  
                 </select>
-                <label for="lbl_fecha_nacimiento"><b>Fecha Nacimiento</b></label>
-                <input class="form-control" type="date" name="txt_fecha_nacimiento" id="txt_fecha_nacimiento" required>
-                <label for="lbl_puesto"><b>Puesto</b></label>
-                <select class="form-control" name="drop_puesto" id="drop_puesto" required>
-                    <%
-                        Puestos puesto = new Puestos();
-                        HashMap<String,String> drop = puesto.drop_puesto();
-                        for (String i: drop.keySet()) {
-                            out.println("<option value='" + i + "'>" + drop.get(i) + "</option>");
-                        }
-                    %>
-                </select>
-                <label for="lbl_finicio_labores"><b>Fecha inicio de labores</b></label>
-                <input class="form-control" type="date" name="txt_finicio_labores" id="txt_finicio_labores" required>
+                <label for="lbl_telefono"><b>Teléfono</b></label>
+                <input class="form-control" type="date" name="txt_telefono" id="txt_telefono" required>
+                <label for="lbl_correoe"><b>Correo Electrónico</b></label>
+                <input class="form-control" type="text" name="txt_correoe" id="txt_correoe" required>
                 <br>
                 <button name="btn_agregar" id="btn_agregar" value="agregar" class="btn btn-outline-primary">Agregar</button>
-                <button name="btn_modificar" id="btn_modificar" value="modificar" class="btn btn-outline-success">Modificar</button>
-                <button name="btn_eliminar" id="btn_eliminar" value="eliminar" class="btn btn-outline-danger">Eliminar</button>
+                <button type="button" class="btn btn-outline-success" id="btn_modificar">Modificar</button>
+                <button type="button" class="btn btn-outline-danger" id="btn_eliminar">Eliminar</button>
                 <br>
-        </form>
                 <div class="modal-footer">
-                <a href="puestos.jsp" class="btn btn-success">Puestos</a>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                 </div>
+        </form>
         </div>
         </div>
         </div>
@@ -105,10 +89,9 @@
         <br>
             <div class="container">
             <br>
-            <h1>Empleados</h1>
+            <h1>Clientes</h1>
             <br>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_empleado" onclick="limpiar()" id="btn_nuevo">Nuevo</button>
-            <a href="puestos.jsp" class="btn btn-success">Ir a Puestos</a>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_clientes" onclick="limpiar()" id="btn_nuevo">Nuevo</button>
             <br>
             <br>
             <table class="table table-dark table-hover table-responsive">
@@ -117,22 +100,18 @@
                         <th>ID</th>
                         <th>Nombres</th>
                         <th>Apellidos</th>
-                        <th>Direccion</th>
-                        <th>Telefono</th>
-                        <th>DPI</th>
+                        <th>Nit</th>
                         <th>Genero</th>
-                        <th>Fecha Nacimiento</th>
-                        <th>Puesto</th>
-                        <th>Fecha Inicio</th>
+                        <th>Telefono</th>
+                        <th>E-mail</th>
                         <th>Fecha Ingreso</th>
-                        <th class="d-none">Id Puesto</th>
                     </tr>
                 </thead>
-                <tbody id="tbl_empleados">
+                <tbody id="tbl_clientes">
                     <%
-                        Empleado emp = new Empleado();
+                        Clientes cli = new Clientes();
                         DefaultTableModel tabla = new DefaultTableModel();
-                        tabla = emp.leer();
+                        tabla = cli.leer();
                         for (int t=0; t<tabla.getRowCount();t++){
                             out.println("<tr>");
                             out.println("<td>" + tabla.getValueAt(t, 0) + "</td>");
@@ -143,10 +122,6 @@
                             out.println("<td>" + tabla.getValueAt(t, 5) + "</td>");
                             out.println("<td>" + tabla.getValueAt(t, 6) + "</td>");
                             out.println("<td>" + tabla.getValueAt(t, 7) + "</td>");
-                            out.println("<td>" + tabla.getValueAt(t, 8) + "</td>");
-                            out.println("<td>" + tabla.getValueAt(t, 9) + "</td>");
-                            out.println("<td>" + tabla.getValueAt(t, 10) + "</td>");
-                            out.println("<td class="+ "'d-none'" + ">" + tabla.getValueAt(t, 11) + "</td>");
                             out.println("</tr>");
                         }
                     %>
@@ -154,54 +129,46 @@
             </table>
         </div>
         <script type="text/javascript">
+            
             //*Limpiar todas las casillas*/
             function limpiar(){
                 $("#txt_id").val(0);
                 $("#txt_nombres").val('');
                 $("#txt_apellidos").val('');
-                $("#txt_direccion").val('');
-                $("#txt_telefono").val('');
-                $("#txt_dpi").val('');
+                $("#txt_nit").val('');
                 $("#drop_genero").val('');
-                $("#txt_fecha_nacimiento").val('');
-                $("#drop_puesto").val('1');
-                $("#txt_finicio_labores").val('');
+                $("#txt_telefono").val('');
+                $("#txt_correoe").val('');
+
             }
             
             /*para que el modal no se cierre al dar clic afuera*/
             $(document).ready(function(){
                 $("#btn_nuevo").click(function(){
-                $("#modal_empleado").modal({backdrop: "static"});
+                $("#modal_clientes").modal({backdrop: "static"});
                 });
                 });
                 
             /*para que al hacer clic se abra la ventana modal*/
-            $('#tbl_empleados').on('click','tr td',function(){
-               var target,id,nombres,apellidos,direccion,telefono,dpi,genero,fecha_nacimiento,puesto,fecha_inicio_labores,fechaingreso,idPuesto; 
+            $('#tbl_clientes').on('click','tr td',function(){
+               var target,id,nombres,apellidos,nit,genero,telefono,email,fechaingreso; 
                target = $(event.target);
                id = target.parent("tr").find("td").eq(0).html();
                nombres = target.parent("tr").find("td").eq(1).html();
                apellidos = target.parent("tr").find("td").eq(2).html();
-               direccion = target.parent("tr").find("td").eq(3).html();
-               telefono = target.parent("tr").find("td").eq(4).html();
-               dpi = target.parent("tr").find("td").eq(5).html();
-               genero = target.parent("tr").find("td").eq(6).html();
-               fecha_nacimiento = target.parent("tr").find("td").eq(7).html();
-               puesto = target.parent("tr").find("td").eq(8).html();
-               fecha_inicio_labores = target.parent("tr").find("td").eq(9).html();
-               fechaingreso = target.parent("tr").find("td").eq(10).html();
-               idPuesto = target.parent("tr").find("td").eq(11).html();
+               nit = target.parent("tr").find("td").eq(3).html();
+               genero = target.parent("tr").find("td").eq(4).html();
+               telefono = target.parent("tr").find("td").eq(5).html();
+               email = target.parent("tr").find("td").eq(6).html();
+               fechaingreso = target.parent("tr").find("td").eq(7).html();
                $("#txt_id").val(id);
                $("#txt_nombres").val(nombres);
                $("#txt_apellidos").val(apellidos);
-               $("#txt_direccion").val(direccion);
-               $("#txt_telefono").val(telefono);
-               $("#txt_dpi").val(dpi);
-               $("#drop_genero").val(genero);
-               $("#txt_fecha_nacimiento").val(fecha_nacimiento);
-               $("#drop_puesto").val(idPuesto);
-               $("#txt_finicio_labores").val(fecha_inicio_labores);
-               $("#modal_empleado").modal('show');
+               $("#nit").val(direccion);
+               $("#genero").val(telefono);
+               $("#telefono").val(dpi);
+               $("#email").val(genero);
+               $("#modal_clientes").modal('show');
             });
         
         </script>

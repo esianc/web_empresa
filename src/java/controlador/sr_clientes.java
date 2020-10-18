@@ -4,20 +4,21 @@
  * and open the template in the editor.
  */
 package controlador;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.Puestos;
+import modelo.Clientes;
 
 /**
  *
  * @author Erick
  */
-public class sr_puesto extends HttpServlet {
-    Puestos puesto;
+public class sr_clientes extends HttpServlet {
+    Clientes cliente;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -27,27 +28,27 @@ public class sr_puesto extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet sr_puesto</title>");            
+            out.println("<title>Servlet sr_clientes</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet sr_puesto at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet sr_clientes at " + request.getContextPath() + "</h1>");
             
-            puesto = new Puestos(request.getParameter("txt_puesto"),Integer.valueOf(request.getParameter("txt_idp")));
+            cliente = new Clientes(request.getParameter("txt_nombres"),request.getParameter("txt_apellidos"),request.getParameter("txt_nit"),request.getParameter("drop_genero"),request.getParameter("txt_telefono"),request.getParameter("txt_correoe"),Integer.valueOf(request.getParameter("txt_id")));
             
-                //boton agregar    
+            //boton agregar    
                 if ("agregar".equals(request.getParameter("btn_agregar"))){
-                if (puesto.agregar()>0){
-                response.sendRedirect("puestos.jsp");
+                if (cliente.agregar()>0){
+                response.sendRedirect("clientes.jsp");
                 } else {
                     out.println("<h1>No se ingreso</h1>");
-                    out.println("<a href='menu.jsp'>Regresar</a>");
+                    out.println("<a href='empleado.jsp'>Regresar</a>");
                 }
                 }
             
-            //boton modificar    
+             //boton modificar    
                 if ("modificar".equals(request.getParameter("btn_modificar"))){
-                if (puesto.modificar()>0){
-                response.sendRedirect("puestos.jsp");
+                if (cliente.modificar()>0){
+                response.sendRedirect("clientes.jsp");
                 } else {
                     out.println("<h1>No se actualizó</h1>");
                     out.println("<a href='index.jsp'>Regresar</a>");
@@ -56,8 +57,8 @@ public class sr_puesto extends HttpServlet {
                 
             //boton eliminar    
                 if ("eliminar".equals(request.getParameter("btn_eliminar"))){
-                if (puesto.eliminar()>0){
-                response.sendRedirect("puestos.jsp");
+                if (cliente.eliminar()>0){
+                response.sendRedirect("clientes.jsp");
                 } else {
                     out.println("<h1>No se eliminó</h1>");
                     out.println("<a href='index.jsp'>Regresar</a>");

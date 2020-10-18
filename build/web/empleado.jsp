@@ -20,6 +20,29 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     </head>
     <body>
+        <!-- Barra -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Empleados</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="empleado.jsp">Empleados</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="puestos.jsp">Puestos</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Clientes</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    </div>
+                </li>
+                </ul>
+            </div>
+        </nav>
         <br>
         <!-- Modal -->
         <div class="modal fade" id="modal_empleado" role="dialog">
@@ -27,7 +50,7 @@
         <!-- Modal content-->
         <div class="modal-content">
         <div class="modal-header">
-        <h4 class="modal-title">Registro de empleados</h4>
+        <h4 class="modal-title">Mantenimiento de empleados</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
@@ -65,15 +88,15 @@
                 <label for="lbl_finicio_labores"><b>Fecha inicio de labores</b></label>
                 <input class="form-control" type="date" name="txt_finicio_labores" id="txt_finicio_labores" required>
                 <br>
-                <button name="btn_agregar" id="btn_agregar" value="agregar" class="btn btn-outline-success">Agregar</button>
-                <button type="button" class="btn btn-primary" id="btn_modificar">Modificar</button>
-                <button type="button" class="btn btn-primary" id="btn_eliminar">Eliminar</button>
+                <button name="btn_agregar" id="btn_agregar" value="agregar" class="btn btn-outline-primary">Agregar</button>
+                <button name="btn_modificar" id="btn_modificar" value="modificar" class="btn btn-outline-success">Modificar</button>
+                <button name="btn_eliminar" id="btn_eliminar" value="eliminar" class="btn btn-outline-danger">Eliminar</button>
                 <br>
+        </form>
                 <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="btn_puestos">Puestos</button>
+                <a href="puestos.jsp" class="btn btn-success">Puestos</a>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                 </div>
-        </form>
         </div>
         </div>
         </div>
@@ -86,8 +109,6 @@
             <br>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_empleado" onclick="limpiar()" id="btn_nuevo">Nuevo</button>
             <a href="puestos.jsp" class="btn btn-success">Ir a Puestos</a>
-               <a href="menu.jsp" class="btn btn-success">Menu</a>
-                <a href="login.jsp" class="btn btn-outline-danger">Salir</a>
             <br>
             <br>
             <table class="table table-dark table-hover table-responsive">
@@ -178,9 +199,9 @@
                $("#txt_dpi").val(dpi);
                $("#drop_genero").val(genero);
                $("#txt_fecha_nacimiento").val(fecha_nacimiento);
-               $("#drop_puesto").val(puesto);
+               $("#drop_puesto").val(idPuesto);
                $("#txt_finicio_labores").val(fecha_inicio_labores);
-               $("#modal_producto").modal('show');
+               $("#modal_empleado").modal('show');
             });
         
         </script>

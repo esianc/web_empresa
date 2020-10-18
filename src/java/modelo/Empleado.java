@@ -171,4 +171,53 @@ public class Empleado {
         }
         return retorno;
     }
+    
+    public int modificar(){
+        int retorno = 0;
+        try {
+            cn = new Conexion();
+            PreparedStatement parametro;
+            String query="UPDATE empleados SET nombres=?,apellidos=?,direccion=?,telefono=?,dpi=?,genero=b"+"'"+"?"+"'"+",fecha_nacimiento=?,idPuesto=?,fecha_inicio_labores=? WHERE idEmpleado=?;";
+            cn.abrir_conexion();
+            parametro = (PreparedStatement)cn.conexionBD.prepareStatement(query);
+            parametro.setString(1, this.getNombres());
+            parametro.setString(2, this.getApellidos());
+            parametro.setString(3, this.getDireccion());
+            parametro.setString(4, this.getTelefono());
+            parametro.setString(5, this.getDpi());
+            parametro.setString(6, this.getGenero());
+            parametro.setString(7, this.getFnacimiento());
+            parametro.setInt(8, this.getId_puesto());
+            parametro.setString(9, this.getFinicio_labores());
+            parametro.setInt(10, this.getId());
+            
+            retorno = parametro.executeUpdate();
+            cn.cerrar_conexion();
+        } catch (SQLException ex){
+            System.out.println(ex.getMessage());
+            retorno = 0;
+        }
+        return retorno;
+    }
+
+    public int eliminar(){
+        int retorno = 0;
+        try {
+            cn = new Conexion();
+            PreparedStatement parametro;
+            String query="delete from empleados where idEmpleado=?;";
+            cn.abrir_conexion();
+            parametro = (PreparedStatement)cn.conexionBD.prepareStatement(query);
+            parametro.setInt(1, this.getId());
+            retorno = parametro.executeUpdate();
+            cn.cerrar_conexion();
+        } catch (SQLException ex){
+            System.out.println(ex.getMessage());
+            retorno = 0;
+        }
+        return retorno;
+    }    
+    
+    
+    
 }

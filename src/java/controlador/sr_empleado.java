@@ -44,7 +44,26 @@ public class sr_empleado extends HttpServlet {
                 }
                 }
             
-            
+             //boton modificar    
+                if ("modificar".equals(request.getParameter("btn_modificar"))){
+                if (empleado.modificar()>0){
+                response.sendRedirect("empleado.jsp");
+                } else {
+                    out.println("<h1>No se actualizó</h1>");
+                    out.println("<a href='index.jsp'>Regresar</a>");
+                }
+                }
+                
+            //boton eliminar    
+                if ("eliminar".equals(request.getParameter("btn_eliminar"))){
+                if (empleado.eliminar()>0){
+                response.sendRedirect("empleado.jsp");
+                } else {
+                    out.println("<h1>No se eliminó</h1>");
+                    out.println("<a href='index.jsp'>Regresar</a>");
+                }
+                }
+                
             out.println("</body>");
             out.println("</html>");
         }
