@@ -69,7 +69,7 @@
                     <option value="1">Femenino</option>  
                 </select>
                 <label for="lbl_telefono"><b>Teléfono</b></label>
-                <input class="form-control" type="date" name="txt_telefono" id="txt_telefono" required>
+                <input class="form-control" type="text" name="txt_telefono" id="txt_telefono" required>
                 <label for="lbl_correoe"><b>Correo Electrónico</b></label>
                 <input class="form-control" type="text" name="txt_correoe" id="txt_correoe" required>
                 <br>
@@ -151,23 +151,23 @@
                 
             /*para que al hacer clic se abra la ventana modal*/
             $('#tbl_clientes').on('click','tr td',function(){
-               var target,id,nombres,apellidos,nit,genero,telefono,email,fechaingreso; 
+               var target,nombres,apellidos,nit,genero,telefono,correo_electronico,fechaingreso,id; 
                target = $(event.target);
-               id = target.parent("tr").find("td").eq(0).html();
                nombres = target.parent("tr").find("td").eq(1).html();
                apellidos = target.parent("tr").find("td").eq(2).html();
                nit = target.parent("tr").find("td").eq(3).html();
                genero = target.parent("tr").find("td").eq(4).html();
                telefono = target.parent("tr").find("td").eq(5).html();
-               email = target.parent("tr").find("td").eq(6).html();
+               correo_electronico = target.parent("tr").find("td").eq(6).html();
                fechaingreso = target.parent("tr").find("td").eq(7).html();
+               id = target.parent("tr").find("td").eq(0).html();
                $("#txt_id").val(id);
                $("#txt_nombres").val(nombres);
                $("#txt_apellidos").val(apellidos);
-               $("#nit").val(direccion);
-               $("#genero").val(telefono);
-               $("#telefono").val(dpi);
-               $("#email").val(genero);
+               $("#txt_nit").val(nit);
+               $("#drop_genero").val(genero);
+               $("#txt_telefono").val(telefono);
+               $("#txt_correoe").val(correo_electronico);
                $("#modal_clientes").modal('show');
             });
         

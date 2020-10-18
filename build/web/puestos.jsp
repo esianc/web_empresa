@@ -67,7 +67,7 @@
             </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
             </div>
             </div>
             </div>
@@ -78,8 +78,7 @@
                 <h1>Mantenimiento de Puestos</h1>
                 <br>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_puesto" onclick="limpiar()" id="btn_nuevo">Nuevo</button>
-                <a href="empleado.jsp" class="btn btn-success">Ir a Empleados</a>
-                <a href="login.jsp" class="btn btn-outline-danger">Salir</a>
+                <a href="empleado.jsp" class="btn btn-success">Ir a Empleados</a>               
                 <br>
                 <br>
                 <table class="table table-dark table-hover table-responsive">
