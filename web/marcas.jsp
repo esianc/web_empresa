@@ -55,7 +55,7 @@
                 <h1>Mantenimiento de Marcas</h1>
                 <br>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_puesto" onclick="limpiar()" id="btn_nuevo">Nuevo</button>
-                <a href="empleado.jsp" class="btn btn-success">Ir a Empleados</a>               
+                <a href="productos.jsp" class="btn btn-success">Ir a Productos</a>               
                 <br>
                 <br>
                 <table class="table table-dark table-hover table-responsive">

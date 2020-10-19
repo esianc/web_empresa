@@ -4,20 +4,21 @@
  * and open the template in the editor.
  */
 package controlador;
-import modelo.Empleado;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import modelo.Productos;
 /**
  *
  * @author Erick
  */
-public class sr_empleado extends HttpServlet {
-    Empleado empleado;
+public class sr_productos extends HttpServlet {
+
+    Productos prod;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -27,27 +28,27 @@ public class sr_empleado extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet sr_empleado</title>");            
+            out.println("<title>Servlet sr_productos</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet sr_empleado at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet sr_productos at " + request.getContextPath() + "</h1>");
             
-            empleado = new Empleado(request.getParameter("txt_nombres"),request.getParameter("txt_apellidos"),request.getParameter("txt_direccion"),request.getParameter("txt_telefono"),request.getParameter("txt_dpi"),request.getParameter("drop_genero"),request.getParameter("txt_fecha_nacimiento"),request.getParameter("txt_finicio_labores"),Integer.valueOf(request.getParameter("drop_puesto")),Integer.valueOf(request.getParameter("txt_id")));
+            prod = new Productos(request.getParameter("txt_codigo"),request.getParameter("txt_descripcion"),request.getParameter("txt_imagen"),request.getParameter("txt_fingreso"),Double.valueOf(request.getParameter("txt_precioc")),Double.valueOf(request.getParameter("txt_preciov")),Integer.valueOf(request.getParameter("drop_marca")),Integer.valueOf(request.getParameter("txt_existencia")),Integer.valueOf(request.getParameter("txt_idprod")));
             
             //boton agregar    
                 if ("agregar".equals(request.getParameter("btn_agregar"))){
-                if (empleado.agregar()>0){
-                response.sendRedirect("empleados.jsp");
+                if (prod.agregar()>0){
+                response.sendRedirect("productos.jsp");
                 } else {
                     out.println("<h1>No se ingreso</h1>");
                     out.println("<a href='index.jsp'>Regresar</a>");
                 }
                 }
             
-             //boton modificar    
+            //boton modificar    
                 if ("modificar".equals(request.getParameter("btn_modificar"))){
-                if (empleado.modificar()>0){
-                response.sendRedirect("empleado.jsp");
+                if (prod.modificar()>0){
+                response.sendRedirect("productos.jsp");
                 } else {
                     out.println("<h1>No se actualizó</h1>");
                     out.println("<a href='index.jsp'>Regresar</a>");
@@ -56,14 +57,16 @@ public class sr_empleado extends HttpServlet {
                 
             //boton eliminar    
                 if ("eliminar".equals(request.getParameter("btn_eliminar"))){
-                if (empleado.eliminar()>0){
-                response.sendRedirect("empleado.jsp");
+                if (prod.eliminar()>0){
+                response.sendRedirect("productos.jsp");
                 } else {
                     out.println("<h1>No se eliminó</h1>");
                     out.println("<a href='index.jsp'>Regresar</a>");
                 }
                 }
-                
+            
+            
+            
             out.println("</body>");
             out.println("</html>");
         }

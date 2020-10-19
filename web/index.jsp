@@ -46,6 +46,7 @@
                     <a class="nav-link dropdown-toggle" href="#" id="drop_merca" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mercaderias</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="marcas.jsp">Marcas</a>
+                        <a class="dropdown-item" href="productos.jsp">Productos</a>
                     </div>
                 </li>
                 </ul>
