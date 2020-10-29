@@ -34,6 +34,7 @@
                     <a class="nav-link dropdown-toggle" href="#" id="drop_cli" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ventas</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="clientes.jsp">Clientes</a>
+                        <a class="dropdown-item" href="ventas.jsp">Ventas</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
