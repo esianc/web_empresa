@@ -5,6 +5,7 @@
  */
 package modelo;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
@@ -144,5 +145,49 @@ public class Ventas {
         }
         
         return tbl_ventas1;
+    }
+     
+     public DefaultTableModel lee_empl(){
+        DefaultTableModel tbl_ventas3 = new DefaultTableModel();
+        try {
+            cn = new Conexion();
+            cn.abrir_conexion();
+                String query="SELECT idEmpleado as id, CONCAT(nombres,' ',apellidos) as ncompleto,direccion,telefono,fechaingreso FROM empleados;";
+                ResultSet consulta = cn.conexionBD.createStatement().executeQuery(query);
+                String encabezado[] = {"Id","Codigo","Descripcion","Precio","Existencia"};
+                tbl_ventas3.setColumnIdentifiers(encabezado);
+                String datos[] = new String[5];
+                while (consulta.next()){
+                    datos[0] = consulta.getString("id");
+                    datos[1] = consulta.getString("ncompleto");
+                    datos[2] = consulta.getString("direccion");
+                    datos[3] = consulta.getString("telefono");
+                    datos[4] = consulta.getString("fechaingreso");
+                    tbl_ventas3.addRow(datos);
+                }
+            cn.cerrar_conexion();
+        } catch (SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        
+        return tbl_ventas3;
+    }
+     
+    public int ultimo(){
+        int retorno = 0;
+        try {
+            cn = new Conexion();
+            cn.abrir_conexion();
+            PreparedStatement parametro;
+            String query="SELECT (idVenta + 1) as id FROM ventas ORDER BY idVenta DESC LIMIT 1;";
+            cn.abrir_conexion();
+            parametro = (PreparedStatement)cn.conexionBD.prepareStatement(query);
+            parametro.setInt(1, this.getId());
+            cn.cerrar_conexion();
+        } catch (SQLException ex){
+            System.out.println(ex.getMessage());
+            retorno = 0;
+        }
+        return retorno;
     }
 }
